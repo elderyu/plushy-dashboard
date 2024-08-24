@@ -30,6 +30,6 @@ jobs:
       - name: Build and push to dockerhub
         uses: docker/build-push-action@v5
         with: 
-          context:
+          file: ./PlushyDashboard/Dockerfile
           push: true
           tags: elderyu/playground:latest
