@@ -7,4 +7,15 @@
 Welcome to your new app. 
 Soon this paragraph will be visible on cluster! 
 
+This is an environmental variable: @EnvironmentVariableSample
+
 <SurveyPrompt Title="How is Blazor working for you?"/>
+
+@code{
+    private string EnvironmentVariableSample { get; set; }
+
+    protected override void OnInitialized()
+    {
+        EnvironmentVariableSample = Environment.GetEnvironmentVariable("EnvironmentVariableSample") ?? "Did not find EnvironmentVariableSample";
+    }
+}
