@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IConfiguration configuration
 
 <PageTitle>Index</PageTitle>
 
@@ -8,14 +9,17 @@ Welcome to your new app.
 Soon this paragraph will be visible on cluster! 
 
 This is an environmental variable: @EnvironmentVariableSample
+This is a variable from appsettings: @SampleAppsettingsOption
 
 <SurveyPrompt Title="How is Blazor working for you?"/>
 
 @code{
     private string EnvironmentVariableSample { get; set; }
+    private string SampleAppsettingsOption { get; set; }
 
     protected override void OnInitialized()
     {
         EnvironmentVariableSample = Environment.GetEnvironmentVariable("EnvironmentVariableSample") ?? "Did not find EnvironmentVariableSample";
+        SampleAppsettingsOption = configuration.GetValue<string>("SampleAppsettingsOption") ?? "Did not find SampleAppsettingsOption";
     }
 }
